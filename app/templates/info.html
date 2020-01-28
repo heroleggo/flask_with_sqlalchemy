@@ -1,0 +1,49 @@
+{% extends './base.html' %}
+
+{% block content %}
+<br />
+<br />
+	<div class="container" style="margin-left: auto; margin-right: auto">
+		<style>
+			@media (min-width: 768px) {
+				.container {
+					width: 750px;
+				}
+			}
+			@media (min-width: 992px) {
+				.container {
+					width: 940px;
+				}
+			}
+		</style>
+		<table border="2" style="margin-left: auto; margin-right: auto">
+			<caption>User Information</caption>
+			<tr>
+				<th>username</th>
+				<th>password</th>
+				<th>email</th>
+			</tr>
+			<tr>
+				<td>{{ username }}</td>
+				<td>{{ password }}</td>
+				<td>{{ email }}</td>
+			</tr>
+		</table>
+
+		<!-- this is for update information-->
+		<div class="menu">
+			<form class="px-4 py-3" style="margin-top: 100px;" action="/info" method="post">
+				<div class="form-group">
+					<label for="username">ID</label>
+					<input type="text" class="form-control" name="up_username" placeholder="ID">
+				</div>
+				<div class="form-group">
+					<label for="password">password</label>
+					<input type="password" class="form-control" name="up_password" placeholder="password">
+				</div>
+				<button type="submit" class="btn btn-outline-primary">Update</button>
+			</form>
+		</div>
+	</div>
+  
+{% endblock %}

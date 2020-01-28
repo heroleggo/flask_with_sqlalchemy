@@ -1,0 +1,49 @@
+{% extends './base.html' %}
+
+{% block content %}
+{% if session.logged_in %}
+	<div class="container">
+		<div class="row">
+	  	<div class="col card" style="width: auto; margin-left: 10px; margin-right: 10px; margin-top: 30px;">
+	  		<img src="https://enki.co.kr/img/logo.png" class="card-img-top">
+	  		<div class="card-body">
+	  			<h5 class="card-title">ENKI</h5>
+	  			<p class="card-text">Enki is best hacker's group</p>
+	  			<a href="/programs" class="btn btn-primary">Enter</a>
+	  		</div>
+	  	</div>
+
+	  	<div class="col card" style="width: auto; margin-left: 10px; margin-right: 10px; margin-top: 30px;">
+	  		<img src="{{ url_for('static', filename='img/photoshop.png') }}" class="card-img-top">
+	  		<div class="card-body">
+	  			<h5 class="card-title">Adobe PhotoShop</h5>
+	  			<p class="card-text">PhotoShop king</p>
+	  			<a href="/programs" class="btn btn-primary">Enter</a>
+	  		</div>
+	  	</div>
+
+	  	<div class="col card" style="width: auto; margin-left: 10px; margin-right: 10px; margin-top: 30px;">
+	  		<img src="{{ url_for('static', filename='img/bitcoin.png') }}" class="card-img-top">
+	  		<div class="card-body">
+	  			<h5 class="card-title">Bitcoin</h5>
+	  			<p class="card-text">Bitcoin Don Beol Ja~</p>
+	  			<a href="/programs" class="btn btn-primary">Enter</a>
+	  		</div>
+	  	</div>
+	  </div>
+	</div>
+{% else %}
+	<div class="container">
+		<div class="row">
+			<div class="col card" style="width: 18rem; margin-left: 10px; margin-right: 10px; margin-top: 30px;">
+				<div class="card-body">
+					<h5 class="card-title">Not Logged in</h5>
+					<p class="card-text">You are not logged in</p>
+					<a href="/" class="btn btn-primary">Go To Main page</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% endblock %}
