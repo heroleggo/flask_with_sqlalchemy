@@ -1,5 +1,5 @@
 from flask import render_template, request, Flask, redirect, url_for, session
-from app import app, db
+from app import app, db, bcrypt
 from app.models import User
 
 
@@ -11,9 +11,10 @@ def main():
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
-	''' sample sample sample sample '''
 	if request.method == 'POST':
-		user = User(request.form['username'], request.form['password'], request.form['email'])
+		# bcrypt encrypt
+		pw_hash = bcrypt.generate_password_hash(request.form['password'])
+		user = User(request.form['username'], pw_hash, request.form['email'])
 		db.session.add(user)
 		db.session.commit()
 		return redirect(url_for('main'))
@@ -25,8 +26,8 @@ def signin():
 	if request.method == 'POST':
 		un = request.form['username']
 		pw = request.form['password']
-		res = db.session.query(User).filter_by(username=un, password=pw).first()
-		if res is not None:
+		res = db.session.query(User).filter_by(username=un).first()
+		if res and bcrypt.check_password_hash(res.password, pw):
 			session['logged_in'] = True
 			session['username'] = un
 			return redirect(url_for('main'))
